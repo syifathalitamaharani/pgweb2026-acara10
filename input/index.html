@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Form Input</h2>
+
+<form action="input.php" onsubmit="return validateForm()" method="post">
+
+    <label for="nama_sppg">Nama SPPG:</label><br>
+    <input type="text" id="nama_sppg" name="nama_sppg" value="" required><br>
+
+    <label for="kecamatan">Kecamatan:</label><br>
+    <input type="text" id="kecamatan" name="kecamatan" value="" required><br>
+
+    <label for="kabupaten">Kabupaten:</label><br>
+    <input type="text" id="kabupaten" name="kabupaten" value="Sleman" required><br>
+
+    <label for="longitude">Longitude:</label><br>
+    <input type="text" id="longitude" name="longitude" value="" required><br>
+
+    <label for="latitude">Latitude:</label><br>
+    <input type="text" id="latitude" name="latitude" value="" required><br><br>
+
+    <input type="submit" value="Submit">
+
+</form>
+
+<p id="informasi"></p>
+
+<a href="../index.php">Kembali</a>
+
+<script>
+function validateForm() {
+
+    let longitude = document.getElementById("longitude").value;
+    let latitude = document.getElementById("latitude").value;
+    let text = "";
+
+    if (isNaN(longitude) || longitude < -180 || longitude > 180) {
+        text = "Data longitude harus berupa angka antara -180 sampai 180.";
+    }
+    else if (isNaN(latitude) || latitude < -90 || latitude > 90) {
+        text = "Data latitude harus berupa angka antara -90 sampai 90.";
+    }
+
+    if (text != "") {
+        document.getElementById("informasi").innerHTML = text;
+        return false;
+    }
+
+    return true;
+}
+</script>
+
+</body>
+</html>
